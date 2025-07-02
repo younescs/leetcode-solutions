@@ -6,10 +6,10 @@ class Solution(object):
         """
         dico = set()
         
-        for i in range(len(nums)):
-            if nums[i] in dico:
+        for i in nums:
+            if i in dico:
                 return True
-            dico.add(nums[i])
+            dico.add(i)
 
         return False
         
