@@ -11,11 +11,11 @@ class Solution(object):
             array = [0]*26
             for letter in word:
                 array[ord(letter) - ord("a")] += 1
-            arrtuple = tuple(array)
-            if arrtuple in dico:
-                dico[arrtuple].append(word)
+            array = tuple(array)
+            if array in dico:
+                dico[array].append(word)
             else:
-                dico[arrtuple] = [word]
+                dico[array] = [word]
 
 
         return dico.values()
