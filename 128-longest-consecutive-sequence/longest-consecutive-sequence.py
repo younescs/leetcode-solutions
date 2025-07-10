@@ -4,20 +4,31 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        if len(nums) == 0 :
+            return 0
 
-        hashset = set(nums)
-        maxcounter = 0
-        for i in range(len(nums)):
-            counter = 0
-            if (nums[i] - 1) in hashset:
+        aset = set(nums)
+        anotherset = set()
+        
+        maxCount = 1
+
+        for i in set(nums):
+            if (i-1) in aset:
                 continue
             else:
-                currentNum = nums[i]
-                while currentNum in hashset:
-                    counter += 1
-                    hashset.remove(currentNum)
-                    currentNum += 1
-            maxcounter = max(maxcounter, counter)
+                if (i+1) not in aset: aset.remove(i)
+                else: anotherset.add(i)
+
+        for element in anotherset:
+            counter = 0
+            while element in aset:
+                counter +=1
+                element +=1
+            maxCount = max(counter, maxCount)
+    
+
+        return maxCount
 
 
-        return maxcounter
+      
+
