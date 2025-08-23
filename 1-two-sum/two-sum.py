@@ -7,6 +7,7 @@ class Solution(object):
         """
         
         dico = {}
+
         for i in range(len(nums)):
             rem = target - nums[i]
             if rem in dico:
