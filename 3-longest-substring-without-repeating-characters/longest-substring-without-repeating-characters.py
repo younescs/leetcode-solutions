@@ -5,17 +5,12 @@ class Solution(object):
         :rtype: int
         """
 
-        if not s:
-            return 0
-        if len(s) < 2:
-            return 1
 
         check = set()
         l = 0
         counter = 0
-        check.add(s[l])
 
-        for r in range(1, len(s), 1):
+        for r in range(len(s)):
             while s[r] in check:
                 check.remove(s[l])
                 l += 1
