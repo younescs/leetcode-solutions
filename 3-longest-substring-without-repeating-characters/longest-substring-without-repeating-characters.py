@@ -4,18 +4,17 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        
-        
-        dico = set()
-        l = 0
-        counter = 1
-        
+
         if not s:
             return 0
         if len(s) < 2:
-            return counter
+            return 1
 
+        dico = set()
+        l = 0
+        counter = 1
         dico.add(s[l])
+        
         for r in range(1, len(s), 1):
             if l < r:
                     while s[r] in dico:
