@@ -10,19 +10,18 @@ class Solution(object):
         if len(s) < 2:
             return 1
 
-        dico = set()
+        check = set()
         l = 0
-        counter = 1
-        dico.add(s[l])
-        
+        counter = 0
+        check.add(s[l])
+
         for r in range(1, len(s), 1):
-            if l < r:
-                    while s[r] in dico:
-                        dico.remove(s[l])
-                        l += 1
-                    else:
-                        dico.add(s[r])
-                        counter = max(counter, len(dico))
+            while s[r] in check:
+                check.remove(s[l])
+                l += 1
+            else:
+                check.add(s[r])
+                counter = max(counter, len(check))
                     
             
         return counter
