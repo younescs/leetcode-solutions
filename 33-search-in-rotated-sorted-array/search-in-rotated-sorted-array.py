@@ -28,7 +28,7 @@ class Solution(object):
                     l = m + 1
                 else:
                     r = m - 1
-            elif nums[m] < nums[r]:
+            else:
                 if target < nums[m] or target > nums[r]:
                     r = m -1
                 else:
