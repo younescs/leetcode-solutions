@@ -9,20 +9,18 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        if not head:
+        if not head or not head.next:
             return head
         
         prev = None
         curr = head
-        nxt = curr.next
+        nxt = head.next
 
-        while curr and curr.next:
+        while curr:
+            nxt = curr.next
+
             curr.next = prev 
             prev = curr
             curr = nxt
-            nxt = nxt.next
-
-        curr.next = prev
-
-
-        return curr
+        
+        return prev
