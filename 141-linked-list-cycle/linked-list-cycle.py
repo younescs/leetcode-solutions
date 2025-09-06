@@ -15,13 +15,14 @@ class Solution(object):
             return False
         
         curr = head
-        curr2 = head
+        curr2 = head.next
 
         
         while curr2 and curr2.next:
-            curr = curr.next
-            curr2 = curr2.next.next
             if curr == curr2:
                 return True
+            curr = curr.next
+            curr2 = curr2.next.next
+            
 
         return False
