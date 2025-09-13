@@ -16,9 +16,7 @@ class Solution(object):
             if root == None:
                 return 0
             else:
-                left = depth(root.left)
-                right = depth(root.right)
-                return 1 + max(left, right)
+                return 1 + max(depth(root.left), depth(root.right))
 
         return depth(root)
 
