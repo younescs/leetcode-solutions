@@ -21,8 +21,7 @@ class Solution(object):
                 return False
             if root.val != root2.val:
                 return False
-            else:
-                return check(root.left, root2.left) and check(root.right, root2.right)
+            return check(root.left, root2.left) and check(root.right, root2.right)
                 
 
 
