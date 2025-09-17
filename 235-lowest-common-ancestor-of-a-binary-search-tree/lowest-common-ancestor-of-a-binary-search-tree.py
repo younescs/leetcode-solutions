@@ -14,17 +14,17 @@ class Solution(object):
         :rtype: TreeNode
         """
 
-        bigger, smaller = (p, q) if p.val > q.val else (q, p)
-
+        bigger = max(p.val, q.val)
+        smaller = min(p.val, q.val)
 
 
         def check(root, bigger, smaller):
 
-            if smaller.val < root.val < bigger.val or bigger.val == root.val or smaller.val == root.val:
+            if smaller < root.val < bigger or bigger == root.val or smaller == root.val:
                 return root
-            if bigger.val < root.val:
+            if bigger < root.val:
                 return check(root.left, bigger, smaller)
-            if smaller.val > root.val:
+            if smaller > root.val:
                 return check(root.right, bigger, smaller)
         
         return check(root, bigger, smaller)
