@@ -17,20 +17,13 @@ class Solution(object):
         q = deque([root])
         result = []
 
-
         while q:
-            size = len(q)
-            element = []
-
-            for i in range(size):
+            elements = []
+            for i in range(len(q)):
                 node = q.popleft()
-                element.append(node.val)
-
-                if node.left:
-                    q.append(node.left)
-                if node.right:
-                    q.append(node.right)
-                
-            result.append(element)
+                elements.append(node.val)
+                if node.left: q.append(node.left)
+                if node.right:q.append(node.right)    
+            result.append(elements)
 
         return result
