@@ -14,7 +14,8 @@ class Solution(object):
 
         if not root: return []
         
-        q = deque([root])
+        q = deque()
+        q.append(root)
         result = []
 
         while q:
