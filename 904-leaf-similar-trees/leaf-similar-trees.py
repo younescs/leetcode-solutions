@@ -11,11 +11,7 @@ class Solution(object):
         :type root2: Optional[TreeNode]
         :rtype: bool
         """
-        if not root1 and not root2:
-            return True
-        if not root1 or not root2:
-            return False
-
+       
         self.list1 = []
         self.list2 = []
 
