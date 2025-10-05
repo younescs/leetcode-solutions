@@ -16,9 +16,9 @@ class Solution(object):
         def search(root, hsf):
             if root == None:
                 return
-            hsf = max(hsf, root.val)
             if hsf <= root.val:
                 self.output +=1
+            hsf = max(hsf, root.val)
             search(root.right, hsf)
             search(root.left, hsf)
 
