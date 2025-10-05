@@ -10,9 +10,9 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
-        if not root:
-            return 0
+      
         self.output = 0
+
         def search(root, hsf):
             if root == None:
                 return
