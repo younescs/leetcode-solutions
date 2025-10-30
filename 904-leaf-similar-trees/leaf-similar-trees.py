@@ -19,33 +19,18 @@ class Solution(object):
         self.leaves = []
         self.leaves2 = []
 
-        def dfs(root):
+        def dfs(root, alist):
             if not root:
                 return
             if not root.left and not root.right:
-                self.leaves.append(root.val)
-                return
+                alist.append(root.val)
             else:
-                dfs(root.left)
-                dfs(root.right)
-                return
+                dfs(root.left, alist)
+                dfs(root.right, alist)
         
-        def dfs2(root):
-            if not root:
-                return
-            if not root.left and not root.right:
-                self.leaves2.append(root.val)
-                return
-            else:
-                dfs2(root.left)
-                dfs2(root.right)
-                return
 
-        dfs(root1)
-        dfs2(root2)
-
-        print(self.leaves)
-        print(self.leaves2)
+        dfs(root1, self.leaves)
+        dfs(root2, self.leaves2)
 
 
         return self.leaves == self.leaves2
