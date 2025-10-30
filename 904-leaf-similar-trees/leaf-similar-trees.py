@@ -11,20 +11,44 @@ class Solution(object):
         :type root2: Optional[TreeNode]
         :rtype: bool
         """
-       
-        self.list1 = []
-        self.list2 = []
+        if not root1 and not root2:
+            return True
+        if not root1 or not root2:
+            return False
 
-        def check(root, alist):
+        self.leaves = []
+        self.leaves2 = []
+
+        def dfs(root):
             if not root:
-                return None
+                return
             if not root.left and not root.right:
-                alist.append(root.val)
-            check(root.left, alist)
-            check(root.right, alist)
+                self.leaves.append(root.val)
+                return
+            else:
+                dfs(root.left)
+                dfs(root.right)
+                return
         
-        check(root1, self.list1)
-        check(root2, self.list2)
+        def dfs2(root):
+            if not root:
+                return
+            if not root.left and not root.right:
+                self.leaves2.append(root.val)
+                return
+            else:
+                dfs2(root.left)
+                dfs2(root.right)
+                return
 
-        return self.list1 == self.list2
+        dfs(root1)
+        dfs2(root2)
+
+        print(self.leaves)
+        print(self.leaves2)
+
+
+        return self.leaves == self.leaves2
+        
+
 
