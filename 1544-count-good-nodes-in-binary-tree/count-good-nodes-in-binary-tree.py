@@ -9,19 +9,26 @@ class Solution(object):
         """
         :type root: TreeNode
         :rtype: int
+        
         """
-      
-        self.output = 0
-
-        def search(root, hsf):
-            if root == None:
-                return
-            if hsf <= root.val:
-                self.output +=1
-            hsf = max(hsf, root.val)
-            search(root.right, hsf)
-            search(root.left, hsf)
-
-        search(root, root.val)
-
-        return self.output
+        self.count = 0
+        #bsf = biggest so far
+        
+        def dfs(root, bsf):
+            if not root:
+                return 
+            if root.val >= bsf:
+                self.count +=1
+            bsf = max(root.val, bsf)
+            dfs(root.left, bsf)
+            dfs(root.right, bsf)
+            
+            
+        dfs(root, root.val)
+        
+        return self.count
+        
+        
+        
+        
+        
