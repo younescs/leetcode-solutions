@@ -6,19 +6,31 @@
 #         self.right = right
 class Solution(object):
     def pathSum(self, root, targetSum):
-        if not root:
-            return 0
+        """
+        :type root: Optional[TreeNode]
+        :type targetSum: int
+        :rtype: int
+        """
+        self.counter = 0
+        def search(root, asum, tsum):
+            if not root:
+                return
+            asum += root.val
+            if asum == tsum:
+                self.counter +=1
+            search(root.left, asum, tsum)
+            search(root.right, asum, tsum)
 
-        def dfs(node, target):
-            if not node:
-                return 0
-            count = 1 if node.val == target else 0
-            count += dfs(node.left, target - node.val)
-            count += dfs(node.right, target - node.val)
-            return count
+        def traversal(root, asum, tsum):
+            if not root:
+                return
+            search(root, asum, tsum)
+            traversal(root.left, asum, tsum)
+            traversal(root.right, asum, tsum)
+        
 
-        # count paths starting from *this* node
-        paths_from_root = dfs(root, targetSum)
+        traversal(root, 0, targetSum)
+        return self.counter
 
-        # then move down and repeat for all other nodes
-        return paths_from_root + self.pathSum(root.left, targetSum) + self.pathSum(root.right, targetSum)
+
+        
