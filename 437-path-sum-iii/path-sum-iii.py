@@ -11,26 +11,38 @@ class Solution(object):
         :type targetSum: int
         :rtype: int
         """
+
+
         self.counter = 0
-        def search(root, asum, tsum):
+
+        def dfs(root, currsum, targetSum, alist):
+            #leaves
             if not root:
                 return
-            asum += root.val
-            if asum == tsum:
+
+            #nodes
+            currsum += root.val
+            if currsum == targetSum:
                 self.counter +=1
-            search(root.left, asum, tsum)
-            search(root.right, asum, tsum)
 
-        def traversal(root, asum, tsum):
-            if not root:
-                return
-            search(root, asum, tsum)
-            traversal(root.left, asum, tsum)
-            traversal(root.right, asum, tsum)
-        
+            temp = currsum
+            for i in alist:
+                temp -= i 
+                if temp == targetSum:
+                    self.counter +=1
+            
+            alist.append(root.val)
+     
 
-        traversal(root, 0, targetSum)
+            dfs(root.left, currsum, targetSum, alist)
+            dfs(root.right, currsum, targetSum, alist)
+            alist.pop()
+
+        dfs(root, 0, targetSum, [])
+
         return self.counter
 
+        
 
+            
         
