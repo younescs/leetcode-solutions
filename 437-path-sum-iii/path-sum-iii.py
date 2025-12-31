@@ -12,37 +12,23 @@ class Solution(object):
         :rtype: int
         """
 
-
+        prefixSum = {0:1}
         self.counter = 0
 
-        def dfs(root, currsum, targetSum, alist):
-            #leaves
+        def dfs(root, currSum):
             if not root:
                 return
-
-            #nodes
-            currsum += root.val
-            if currsum == targetSum:
-                self.counter +=1
-
-            temp = currsum
-            for i in alist:
-                temp -= i 
-                if temp == targetSum:
-                    self.counter +=1
             
-            alist.append(root.val)
-     
-
-            dfs(root.left, currsum, targetSum, alist)
-            dfs(root.right, currsum, targetSum, alist)
-            alist.pop()
-
-        dfs(root, 0, targetSum, [])
-
+            currSum += root.val
+            diff = currSum - targetSum
+            self.counter += prefixSum.get(diff, 0)
+            prefixSum[currSum] = 1 + prefixSum.get(currSum, 0)
+            
+            dfs(root.left,  currSum)
+            dfs(root.right, currSum)
+            prefixSum[currSum] -= 1
+            
+        
+        dfs(root, 0)
+        
         return self.counter
-
-        
-
-            
-        
