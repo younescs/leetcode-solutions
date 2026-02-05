@@ -4,19 +4,11 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
+        n = len(nums)
+        results = [0]*n
+        
+        for i in range(n):
 
-        
-        results = [0]*len(nums)
-        
-        for i in range(len(nums)):
-
-            if nums[i] == 0:
-                results[i] = nums[i]
-            if nums[i] > 0:
-                index = (i + nums[i]) %len(nums)
-                results[i] = nums[index]
-            if nums[i] < 0:
-                index = i - abs(nums[i])%len(nums)
-                results[i] = nums[index]
-        
+           results[i] = nums[(i+ nums[i])%n]
+            
         return results
