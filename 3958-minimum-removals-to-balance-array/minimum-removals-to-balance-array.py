@@ -11,7 +11,7 @@ class Solution(object):
         left = 0
         best = 0
         for right in range(len(nums)):
-            while nums[right] > nums[left]*k and left < right:
+            while nums[right] > nums[left]*k:
                 left +=1
             best = max(best, right - left + 1)
 
