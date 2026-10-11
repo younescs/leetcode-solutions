@@ -1,26 +1,30 @@
-class Solution(object):
-    def topKFrequent(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: List[int]
-        """
+from collections import Counter, defaultdict
 
-        dico = {}
+class Solution:
+    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
 
-        for i in nums:
-            if i in dico:
-                dico[i] += 1
-            else:
-                dico[i] = 1
+        counts = defaultdict(int)
+        counts = Counter(nums)
+        
 
-        array = [0]*k
-        for i in range(k):
-            MaxElement = max(zip(dico.values(), dico.keys()))
-            array[i] = MaxElement[1]
-            dico.pop(MaxElement[1])
+        buckets = [[] for _ in range(len(nums) + 1)]
 
-        return array
+        for key, value in counts.items():
+            buckets[value].append(key)
+
+        result = []
+        for i in range(len(buckets) -1, 0, -1):
+            for num in buckets[i]:
+                result.append(num)
+                if len(result) == k:
+                    return result
 
 
 
+        
+
+       
+            
+
+        
+        
