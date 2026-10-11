@@ -1,21 +1,17 @@
-class Solution(object):
-    def groupAnagrams(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: List[List[str]]
-        """
-
-        dico = {}
-        
+class Solution:
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+        dico = dict()
         for word in strs:
-            array = [0]*26
+            alphabet = [0]*26
             for letter in word:
-                array[ord(letter) - ord("a")] += 1
-            array = tuple(array)
-            if array in dico:
-                dico[array].append(word)
-            else:
-                dico[array] = [word]
+                index = ord('a') - ord(letter)
+                alphabet[index] += 1
+            key = tuple(alphabet)
+            if key in dico:
+                dico[key].append(word)
+            else: dico[key] = [word]
+
+        return list(dico.values())
 
 
-        return dico.values()
+        
