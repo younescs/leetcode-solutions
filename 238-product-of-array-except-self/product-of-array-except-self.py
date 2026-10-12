@@ -1,25 +1,21 @@
-class Solution(object):
-    def productExceptSelf(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[int]
-        """
-        list1 = copy.deepcopy(nums)
-        list2 = copy.deepcopy(nums)
-        output = [0]*len(nums)
+class Solution:
+    def productExceptSelf(self, nums: list[int]) -> list[int]:
+        prefix = [0]*len(nums)
+        prefix[0] = 1
 
-   
-
-        for i in range(1, len(nums), 1):
-            list1[i] = list1[i-1]* list1[i]
+        for i in range(1, len(nums)):
+            prefix[i] = nums[i- 1]* prefix[i - 1]
         
+        temp = 1
 
-        for i in range(len(nums) - 2, -1, -1):
-            list2[i] = list2[i]* list2[i+1]
+        for i in range(len(nums)-2, -1, -1):
+            temp *= nums[i + 1]
+            prefix[i] *= temp
+        
+        return prefix
 
-        output[len(nums)- 1] = list1[len(nums)- 2]
-        output[0] = list2[1]
-        for i in range(1, len(output) - 1, 1):
-            output[i] = list1[i-1] * list2[i+1]
+    
 
-        return output
+
+
+        
