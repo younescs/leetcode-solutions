@@ -5,7 +5,7 @@ class Solution:
 
         #first we create our result list:
 
-        intervals.sort()
+        intervals.sort(key=lambda x: x[0])
         result = []
         result.append(intervals[0])
 
@@ -15,8 +15,7 @@ class Solution:
         for start, end in intervals[1:]:
             last_end = result[-1][1]
             if last_end >= start:
-                new_interval = [result[-1][0], max(last_end, end)]
-                result[-1] = new_interval
+                result[-1][1] = max(last_end, end)
             else:
                 result.append([start, end])
             
