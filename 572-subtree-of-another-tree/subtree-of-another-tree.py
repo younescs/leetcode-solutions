@@ -19,11 +19,9 @@ class Solution:
         #this is always false, if subroot is not empty and root is, it's False, 
         if not root:
             return False
-
         if root.val == subroot.val and self.is_SameTree(root, subroot):
             return True
-        else:
-            return self.isSubtree(root.left, subroot) or self.isSubtree(root.right, subroot)
+        return self.isSubtree(root.left, subroot) or self.isSubtree(root.right, subroot)
             
 
 
