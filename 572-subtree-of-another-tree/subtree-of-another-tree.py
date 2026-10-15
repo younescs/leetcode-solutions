@@ -13,9 +13,13 @@
 
 class Solution:
     def isSubtree(self, root:TreeNode | None, subroot:TreeNode | None):
-        if not root and not subroot:
+        #technically the first base case is not needed is our case since the subroot tree is gurateed to have at least 1 element, i just wrote it in case it could be empty for educational purposes
+        
+        #an empty subroot tree is a subtree of root, even if root is empty
+        if not subroot:
             return True
-        if not root or not subroot:
+        #this is always false, if subroot is not empty and root is, it's False, 
+        if not root:
             return False
 
         if root.val == subroot.val and self.is_SameTree(root, subroot):
