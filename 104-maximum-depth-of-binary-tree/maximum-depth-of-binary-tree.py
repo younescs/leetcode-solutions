@@ -20,7 +20,7 @@ class Solution:
         #we first add the root to it:
         nodeq.append(root)
         counter = 0
-        #now we keep going as long as it's fll
+        #now we keep going as long as it's full
         while nodeq:
             level_size = len(nodeq)
             for i in range(level_size):
