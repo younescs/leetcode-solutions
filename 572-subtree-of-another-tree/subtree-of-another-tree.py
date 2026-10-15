@@ -13,6 +13,15 @@
 
 class Solution:
     def isSubtree(self, root:TreeNode | None, subroot:TreeNode | None):
+        def is_SameTree(q, p):
+            if not q and not p:
+                return True
+            if not q or not p:
+                return False
+            if q.val != p.val:
+                return False
+            return is_SameTree(q.left, p.left) and is_SameTree(q.right, p.right)
+
         #technically the first base case is not needed is our case since the subroot tree is gurateed to have at least 1 element, i just wrote it in case it could be empty for educational purposes
         #an empty subroot tree is a subtree of root, even if root is empty
         if not subroot:
@@ -21,18 +30,11 @@ class Solution:
         if not root:
             return False
 
-        if root.val == subroot.val and self.is_SameTree(root, subroot):
+        if root.val == subroot.val and is_SameTree(root, subroot):
             return True
         
         return self.isSubtree(root.left, subroot) or self.isSubtree(root.right, subroot)
             
 
 
-    def is_SameTree(self, q, p):
-        if not q and not p:
-            return True
-        if not q or not p:
-            return False
-        if q.val != p.val:
-            return False
-        return self.is_SameTree(q.left, p.left) and self.is_SameTree(q.right, p.right)
+    
