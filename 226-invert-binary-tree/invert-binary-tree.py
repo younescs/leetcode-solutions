@@ -1,26 +1,28 @@
 # Definition for a binary tree node.
-# class TreeNode(object):
+# class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
-    def invertTree(self, root):
-        """
-        :type root: Optional[TreeNode]
-        :rtype: Optional[TreeNode]
-        """
+from collections import deque
+class Solution:
+    def invertTree(self, root: TreeNode | None) -> TreeNode | None:
 
-        def inversion(root):
-            if root == None:
-                return
-            else:
-                temp = root.left
-                root.left = root.right
-                root.right = temp
-                inversion(root.left)
-                inversion(root.right)
+        if not root:
+            return root
+        queue = deque([root])
+
+        while queue:
+            node = queue.popleft()
+            temp = node.left
+            node.left = node.right
+            node.right = temp
+            if node.left: queue.append(node.left)
+            if node.right: queue.append(node.right)
+
+        return root
+        
+
+
 
         
-        inversion(root)
-        return root
