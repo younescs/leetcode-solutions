@@ -7,7 +7,7 @@
 class Solution:
     def kthSmallest(self, root: TreeNode | None, k: int) -> int:
         counter = k
-        answer = root.val
+        answer = None
         def dfs(root):
             nonlocal counter
             nonlocal answer
@@ -15,10 +15,13 @@ class Solution:
                 return
             
             dfs(root.left)
+            if counter <= 0:
+                return
             counter -= 1
             if counter == 0:
                 answer = root.val
                 return
+            if counter <=0: return
             dfs(root.right)
         
         dfs(root)
