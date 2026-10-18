@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def maxPathSum(self, root: TreeNode | None) -> int:
-        maximum = float(-inf)
+        maximum = float('-inf')
         def dfs(root):
             nonlocal maximum
             if not root:
