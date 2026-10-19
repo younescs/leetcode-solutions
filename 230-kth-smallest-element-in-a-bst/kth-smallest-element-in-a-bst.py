@@ -6,23 +6,19 @@
 #         self.right = right
 class Solution:
     def kthSmallest(self, root: TreeNode | None, k: int) -> int:
-        counter = k
-        answer = None
+
+        alist = []
+
         def dfs(root):
-            nonlocal counter
-            nonlocal answer
+            nonlocal alist
             if not root:
                 return
-            
+
             dfs(root.left)
-            if counter <= 0:
-                return
-            counter -= 1
-            if counter == 0:
-                answer = root.val
-                return
-            if counter <=0: return
+            alist.append(root.val)
             dfs(root.right)
-        
+
         dfs(root)
-        return answer
+
+        return alist[k-1]
+        
