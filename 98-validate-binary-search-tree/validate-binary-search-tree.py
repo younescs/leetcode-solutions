@@ -10,13 +10,23 @@ class Solution(object):
         :type root: Optional[TreeNode]
         :rtype: bool
         """
-        curr = root.val
-
-        def validate(root, maxi, mini):
-            if root == None:
-                return True
-            if not mini < root.val < maxi:
-                return False
-            return validate(root.left, root.val, mini) and validate(root.right, maxi, root.val)
         
-        return validate(root, float('+inf'), float('-inf'))
+        def dfs(root, maxi, mini):
+            
+            if not root:
+                return True
+
+            if not (mini < root.val < maxi):
+                return False
+            
+            left = dfs(root.left, root.val, mini)
+            right = dfs(root.right, maxi, root.val)
+            return left and right
+
+
+        return dfs(root, float('inf'), float('-inf'))
+
+        
+                        #5
+                #4                  #6       
+                                  #3   #7
