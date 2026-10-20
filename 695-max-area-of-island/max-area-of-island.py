@@ -8,11 +8,11 @@ class Solution:
         def dfs(i, j):
             nonlocal max_area
             area = 1
-            stack = [(i, j)]
+            stack = collections.deque([(i, j)])
             visited.add((i,j))
             directions = ([1,0], [0,1], [0,-1], [-1,0])
             while stack:
-                x, y = stack.pop()
+                x, y = stack.popleft()
                 for r, c in directions:
                     nr, nc = x + r, y + c
                     if nr in range(rows) and nc in range(cols) and grid[nr][nc] == 1 and (nr, nc) not in visited:
