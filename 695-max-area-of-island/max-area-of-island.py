@@ -9,7 +9,6 @@ class Solution:
             nonlocal max_area
             area = 1
             stack = [(i, j)]
-            stack.append((i,j))
             visited.add((i,j))
             directions = ([1,0], [0,1], [0,-1], [-1,0])
             while stack:
