@@ -14,8 +14,6 @@ class Solution:
         print(graph)
 
         def search_for_cycle(course, visited):
-            if course in safe_list:
-                return True
             if course in visited:
                 return False
             if graph.get(course, []) ==[] or course in safe_list:
@@ -25,6 +23,8 @@ class Solution:
                 if not search_for_cycle(neighbor, visited):
                     return False
             safe_list.add(course)
+            visited.remove(course)
+            graph[course] = []
             return True
 
 
