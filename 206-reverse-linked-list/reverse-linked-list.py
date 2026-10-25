@@ -13,16 +13,13 @@ class Solution:
         curr = head
         nxt = head.next
 
-        while nxt:
-
+        while curr:
+            nxt = curr.next
             curr.next = prev
             prev = curr
             curr = nxt
-            nxt = nxt.next
-        
-        curr.next = prev
-        prev = curr
-        curr = nxt
 
+        
+    
         return prev
         
