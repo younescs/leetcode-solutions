@@ -4,22 +4,22 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
 class Solution:
-    def buildTree(self, preorder: list[int], inorder: list[int]) -> TreeNode | None:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
 
-        def construct(preorder, inorder):
-
+        def build(preorder, inorder):
             if not preorder or not inorder:
                 return
+
+            root = TreeNode(preorder[0]) 
+            mid = inorder.index(root.val)
+            root.left = build(preorder[1:1+mid], inorder[:mid])
+            root.right = build(preorder[1+ mid:], inorder[mid+1:])
+
+            return root
+
+        return build(preorder, inorder)
             
-            node = TreeNode(preorder[0])
-
-            mid = inorder.index(node.val)
-            node.left = construct(preorder[1:1 + mid], inorder[:mid])
-            node.right = construct(preorder[1+mid:], inorder[mid + 1:])
-
-            return node
-
-        return construct(preorder, inorder)
         
         
